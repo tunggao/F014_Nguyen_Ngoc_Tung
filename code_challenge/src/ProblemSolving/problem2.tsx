@@ -12,19 +12,19 @@ const SwapCoin = () => {
   const [coinValueSelected, setSelectedCoinValue] = useState(
     coinSwapList[0]?.value
   );
-  const [coinValueTransformed, setCoinValueTransformed] = useState("");
-  const [inputCoinSelect, setInputCoinSelect] = useState(null);
+  const [coinValueTransformed, setCoinValueTransformed] = useState(Number);
+  const [inputCoinSelect, setInputCoinSelect] = useState(Number);
   const [inputCointTransform, setInputCoinTransform] = useState(Number);
 
   const handleChangeCoinInput = (value) => {
     setInputCoinSelect(value);
   };
 
-  const handleChangeSelectCoin = (valueSelected) => {
+  const handleChangeSelectCoin = (valueSelected: number) => {
     setSelectedCoinValue(valueSelected);
   };
 
-  const handleChangeSwapCoin = (valueTransformed) => {
+  const handleChangeSwapCoin = (valueTransformed: number) => {
     setCoinValueTransformed(valueTransformed);
 
     if (!inputCoinSelect || !coinValueSelected) {

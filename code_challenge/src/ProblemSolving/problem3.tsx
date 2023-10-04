@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import React, { useMemo } from 'react';
 
 interface WalletBalance {
   currency: string;
@@ -10,9 +10,7 @@ interface FormattedWalletBalance extends WalletBalance {
 }
 
 interface Props extends BoxProps {}
-const WalletPage: React.FC<Props> = (props: Props) => {
-  const { children, ...rest } = props; //remove it
-
+const WalletPage = (props: Props) => {
   const balances = useWalletBalances();
   const prices = usePrices();
 
@@ -37,25 +35,14 @@ const WalletPage: React.FC<Props> = (props: Props) => {
     return balances
       .filter((balance: WalletBalance) => {
         const balancePriority = getPriority(balance.blockchain);
-        // if (balancePriority > -99) {
-        //   if (balance.amount <= 0) {
-        //     return true;
-        //   }
-        // }
-        // return false;
         return balancePriority > -99 && balance.amount <= 0;
       })
       .sort((lhs: WalletBalance, rhs: WalletBalance) => {
         const leftPriority = getPriority(lhs.blockchain);
         const rightPriority = getPriority(rhs.blockchain);
-        // if (leftPriority > rightPriority) {
-        //   return -1;
-        // } else if (rightPriority > leftPriority) {
-        //   return 1;
-        // }
         return rightPriority - leftPriority;
       });
-  }, [balances]); //remove price not to use
+  }, [balances]);
 
   const formattedBalances = useMemo(() => {
     return sortedBalances.map((balance: WalletBalance) => {
@@ -83,3 +70,18 @@ const WalletPage: React.FC<Props> = (props: Props) => {
 
   return <div {...props}>{rows}</div>;
 };
+
+
+
+// Explain:
+
+// 1. Remove  const { children, ...rest } = props; because its redundant code
+// 2. Prop Walletbalance add blockchain type string 
+// 3. Because formatedbalance inheritance Walletbalance, so I remove  curency + amount ( it overrided key although the same)
+// 4. Instend using sortbalance it need to be formattedbalance
+// 5. lhs should be in balabncePriority
+// 6. Update logic code return balancePriority > -99 && balance.amount <= 0
+// 7. Update logic for rightPriority + leftPriority, it should be return rightPriority - leftPriority;
+// 8. In function sortedBalances, remove dependency prices because its redundant
+// 9. Need to define component WalletRow, prop BoxProps
+// 10. Need to export default WalletPage to use
