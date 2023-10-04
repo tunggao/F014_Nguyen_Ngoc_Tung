@@ -3,7 +3,9 @@ import SwapCoin from './ProblemSolving/problem2';
 
 function App() {
   return (
-    <SwapCoin />
+    <div className='App'>
+      <SwapCoin />
+    </div>
   );
 }
 

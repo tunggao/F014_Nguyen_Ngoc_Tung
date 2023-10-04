@@ -1,9 +1,15 @@
-.App {
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
-  .input-coin {
-    display: flex;
-  }
-  
+.swap-coin {
+  font-family: sans-serif;
+  text-align: center;
+  border: 4mm ridge rgba(211, 220, 50, .6);
+  border-radius: 15px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.input-coin {
+  display: flex;
+}

@@ -5,14 +5,14 @@ import "./styles.css";
 
 const coinSwapList = COIN_VALUE_SWAP?.map((item) => ({
   value: item?.price,
-  label: item?.currency
+  label: item?.currency,
 }));
 
 const SwapCoin = () => {
   const [coinValueSelected, setSelectedCoinValue] = useState(
     coinSwapList[0]?.value
   );
-  const [coinValueTransformed, setCoinValueTransformed] = useState(Number);
+  const [coinValueTransformed, setCoinValueTransformed] = useState("");
   const [inputCoinSelect, setInputCoinSelect] = useState(Number);
   const [inputCointTransform, setInputCoinTransform] = useState(Number);
 
@@ -20,11 +20,11 @@ const SwapCoin = () => {
     setInputCoinSelect(value);
   };
 
-  const handleChangeSelectCoin = (valueSelected: number) => {
+  const handleChangeSelectCoin = (valueSelected) => {
     setSelectedCoinValue(valueSelected);
   };
 
-  const handleChangeSwapCoin = (valueTransformed: number) => {
+  const handleChangeSwapCoin = (valueTransformed) => {
     setCoinValueTransformed(valueTransformed);
 
     if (!inputCoinSelect || !coinValueSelected) {
@@ -36,7 +36,7 @@ const SwapCoin = () => {
   };
 
   return (
-    <div className="App">
+    <div className="swap-coin">
       <div className="input-coin">
         <Select
           value={coinValueSelected}
@@ -65,6 +65,6 @@ const SwapCoin = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SwapCoin;
